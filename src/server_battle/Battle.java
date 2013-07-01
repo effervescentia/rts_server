@@ -1,16 +1,11 @@
 package server_battle;
 
 public class Battle {
+
+	private static final int EXECUTION_POOL_SIZE = 4;
+
 	public static void main(String args[]) {
-		ToDoQueue toDoQueue = new ToDoQueue();
-		MovementOrder_List movementOrder_List = new MovementOrder_List(toDoQueue);
-		
-		Integer numberofthreads = 4;
-		Thread[] game = null;
-		
-		for(int x = 0; x<numberofthreads; x++){
-			game[x] = new Thread(new TheQThread(toDoQueue));
-			game[x].start();
-		}
+		Order_Time_Matrix Orders = new Order_Time_Matrix(EXECUTION_POOL_SIZE);
+		new UnitCreationOrder_List(Orders);
     }
 }

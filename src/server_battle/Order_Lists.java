@@ -7,38 +7,40 @@ import java.util.concurrent.atomic.AtomicLong;
 public abstract class Order_Lists {
 protected static AtomicLong Unique_Order_ID = new AtomicLong();
 protected List<Order> Outstanding_Orders = new ArrayList<Order>();
-protected final ToDoQueue toDoQueue;
+protected final Order_Time_Matrix orders;
 protected final String name;
 
 
-public Order_Lists(ToDoQueue toDoQueue, String name){
-	this.toDoQueue = toDoQueue;
+public Order_Lists(Order_Time_Matrix orders, String name){
+	this.orders = orders;
 	this.name = name;
-	toDoQueue.RegisterOrderList(this);
+	orders.RegisterOrder_Type(this);
 }
 
 public String getName(){
 	return name;
 }
-protected ToDoQueue getToDoQueue(){
-	return toDoQueue;
+protected Order_Time_Matrix getOrder_Time_Matrix(){
+	return orders;
 }
 
 public long add(Order order){
 	order.setOrder_ID(GetandIncrement());
 	Outstanding_Orders.add(order);
-	Activity activity = new Activity(order.getfirsttime(),order.getOrder_ID(),getName());
-	toDoQueue.add(activity);
 	return order.getOrder_ID();
 }
 
-public Activity update(long order_ID){
+public void updategeo(long order_ID/*,geodata*/){
 	for(Order x:Outstanding_Orders){
-		if(x.getOrder_ID() == order_ID){
-			return x.update();
-		}
+		if(x.getOrder_ID() == order_ID)
+			x.updategeo();
 	}
-	return null;
+}
+public void updatesub(long order_ID/*,subdata*/){
+	for(Order x:Outstanding_Orders){
+		if(x.getOrder_ID() == order_ID)
+			x.updatesub();
+	}
 }
 
 public Order remove(long order_ID){

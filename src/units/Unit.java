@@ -2,7 +2,6 @@ package units;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import server_battle.ToDoQueue;
 import units.Unit;
 
 public abstract class Unit {
@@ -10,13 +9,13 @@ public abstract class Unit {
 	
 	// unique id
 	public final int uniqueId, buildTime;
-	protected final ToDoQueue toDoQueue;
+	//protected final ToDoQueue toDoQueue;
 	protected long updateOrder;
 	private final String name;
 	
-	public Unit (ToDoQueue toDoQueue, String name, int buildTime)	{
+	public Unit (/*ToDoQueue toDoQueue,*/ String name, int buildTime)	{
 		uniqueId = uniqueIdCounter.getAndIncrement();
-		this.toDoQueue = toDoQueue;
+//		this.toDoQueue = toDoQueue;
 		this.buildTime = buildTime;
 		this.name = name;
 	}

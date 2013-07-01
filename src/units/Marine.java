@@ -3,7 +3,6 @@ package units;
 import java.util.ArrayList;
 import java.util.List;
 
-import server_battle.ToDoQueue;
 import server_battle.UpdateOrder;
 
 public class Marine extends Unit{
@@ -20,8 +19,8 @@ public class Marine extends Unit{
 	//private List<Ability> Abilities = new ArrayList<Ability>();
 	//private List<Subscription> Subscriptions = new ArrayList<Subscription>();
 	
-	public Marine(ToDoQueue toDoQueue){
-		super(toDoQueue, "Marine", 17);
+	public Marine(){
+		super("Marine", 17);
 		Healthmax = 45;
 		Healthregen = 1;
 		Manamax = 20;
@@ -60,19 +59,17 @@ public class Marine extends Unit{
 			Manabar += manaregen;
 		else if(Manabar < (Manamax + Manamaxmod))
 			Manabar = Manamax + Manamaxmod;
-		
-		isupdaterequired();
 	}
 	public boolean isupdaterequired(){
 		if(Healthbar < (Healthmax + Healthmaxmod) 
 				| Manabar < (Manamax + Manamaxmod)){
 			if(updateOrder == 0){
-				UpdateOrder updateorder = new UpdateOrder(this,1);
-				updateOrder = toDoQueue.FindOrderList("Update").add(updateorder);
+//				UpdateOrder updateorder = new UpdateOrder(this,1);
+// Queue update				updateOrder = toDoQueue.FindOrderList("Update").add(updateorder);
 			}
 		return true;
 		}else if(updateOrder != 0){
-			toDoQueue.FindOrderList("Update").remove(updateOrder);
+// Cancel update			toDoQueue.FindOrderList("Update").remove(updateOrder);
 			updateOrder = 0;
 			return false;
 		}else

@@ -10,10 +10,11 @@ public UpdateOrder(Unit Unit, long time){
 	this.unit = Unit;
 }
 
-public Activity update(){
+public void run(){
 	unit.update();
 	if(unit.isupdaterequired()){
-		return new Activity(1,this.getOrder_ID(),"Update");
-	}else return null;
+		addupdatetime();
+		setupdatetime(true);
+	}
 }
 }
