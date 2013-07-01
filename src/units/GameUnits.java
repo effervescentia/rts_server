@@ -19,4 +19,10 @@ public class GameUnits {
 		unitList.put(unit.uniqueId, unit);
 		unitLocation.AddUnit(unit.uniqueId, position);
 	}
+	
+	public void MoveUnit (Unit unit, Position newPosition) {
+		unitLocation.MoveUnit(unit.uniqueId, newPosition);
+		//set unit location in unit class 
+		//unitList.get(unit.uniqueId).Position.set(newPosition);
+	}
 }
