@@ -40,14 +40,9 @@ public class OrderQueue {
 	public void add(Order order, long executionWait) {
 		inner.put(new OEWrapper(order, System.currentTimeMillis() + executionWait));
 	}
-	public void remove(long order_id){
-		for(OEWrapper x: inner){
-			if(x.order.getOrder_ID() == order_id){
-				inner.remove(x);
-			}
-		}
+	public void remove(Order order){
+		inner.remove(order);
 	}
-
 	public boolean ready() {
 		OEWrapper order = inner.peek();
 		return order != null && order.executionTime <= System.currentTimeMillis();

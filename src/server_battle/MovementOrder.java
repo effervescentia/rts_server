@@ -2,9 +2,11 @@ package server_battle;
 
 // movement subclass of order
 public class MovementOrder extends Order {
-	// find out direction to go
+//	private static final long TICK_TIME = 1000;
 	
 	
-	// update movement location
-	
+	@Override
+	public void run() {
+
+	}	
 }
