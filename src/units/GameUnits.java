@@ -16,7 +16,7 @@ public class GameUnits {
 	
 	public void RemoveUnit (Unit unit, Position position) {
 		// should probably have mutex
-		unitList.put(unit.uniqueId, unit);
+		unitList.remove(unit.uniqueId);
 		unitLocation.AddUnit(unit.uniqueId, position);
 	}
 	
