@@ -1,0 +1,1 @@
+INDEX VERSION 1.126+D:\rts_server\.metadata\.plugins\org.eclipse.jdt.core

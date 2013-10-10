@@ -1,9 +1,11 @@
 package server_battle;
 
-public abstract class Map {
+public class Map {
 // terrain database
 	Terrain terrain_db;
-	
+	public Map(){
+		terrain_db = new Terrain();
+	}
 // unit database
 	
 }

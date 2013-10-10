@@ -1,4 +1,0 @@
-Implement unit selection, single and box selection
-
-Problems with implementation:
--Assumes unit size of 1 distance squared, should allow for larger units.
