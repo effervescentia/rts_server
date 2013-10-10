@@ -2,6 +2,7 @@ package units;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import server_battle.Position;
 import units.Unit;
 
 public abstract class Unit {
@@ -13,11 +14,21 @@ public abstract class Unit {
 	protected long updateOrder;
 	private final String name;
 	
+	private Position position;
+	
 	public Unit (/*ToDoQueue toDoQueue,*/ String name, int buildTime)	{
 		uniqueId = uniqueIdCounter.getAndIncrement();
 //		this.toDoQueue = toDoQueue;
 		this.buildTime = buildTime;
 		this.name = name;
+	}
+	
+	public Position getPosition () {
+		return position;
+	}
+	
+	public void setPosition () {
+		
 	}
 	
 	public void update(){isupdaterequired();}
