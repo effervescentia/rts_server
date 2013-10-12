@@ -2,7 +2,6 @@ package server_battle;
 
 import java.io.*;
 import java.util.*;
-import gnu.io.*;
 
 import administrative.Logger;
 
@@ -18,26 +17,22 @@ public class Battle {
 		Orders.RegisterOrder_Type(new UnitCreationOrder_List());
 		Orders.RegisterOrder_Type(new MovementOrder_List());
 		Orders.RegisterOrder_Type(new UpdateOrder_List());
+		List<String> fileNames = Arrays.asList("MainOut","UnitStatus","OrderStatus","Active");
+		List<String> comPorts = Arrays.asList("COM1","COM2","COM3","COM4");
 
+		Log.initialize(fileNames, comPorts);
 		
-		if(Log.initialize("log.txt")){
-		}
-		else{
-			System.out.println("Log File failed to open");
-			throw new Exception("LogFailedtoOpen");
-		}
-		
-		System.out.println("Let the game begin: ");
-		
+		System.out.println("Let The Game Begin: ");
+		Log.logln("MainOut", "Let the Game Begin");
 		String input;
 		do{
 			input = "";
 			try{
 				BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
 				input = bufferRead.readLine();
-				Log.logln(input);
+				Log.logln("MainOut",input);
 				if(!parseStringtoOrder(Orders, input)){
-					Log.logln(input + " DID NOT COMPILE");
+					Log.logln("MainOut", input + " DID NOT COMPILE");
 				}
 			}
 			catch(IOException e)
@@ -46,6 +41,7 @@ public class Battle {
 			}
 		
 		}while(input != "exit");
+		
 		outputCurrentState(Orders, gameDatabase, gameMap);
 		Log.close();
     }
