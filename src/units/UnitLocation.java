@@ -105,7 +105,7 @@ public class UnitLocation {
 	}
 	
 	// removes unit from map
-	void Destroy() {
+	void DeleteUnit(int uniqueId) {
 		// TODO
 	}
 	
