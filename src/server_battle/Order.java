@@ -1,13 +1,10 @@
 package server_battle;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 public abstract class Order implements Runnable {
 private long Order_ID;
 protected OrderQueue order_Queue;
 protected Map map;
 protected units.GameUnits gameDatabase;
-private static AtomicLong Unique_Subscription_ID = new AtomicLong();
 //protected List<Subscription> subscription = new ArrayList<Subscription>();
 
 
@@ -30,7 +27,6 @@ public void run() {}
 protected void activation(){}
 public Long activate(){
 	activation();
-	Order_ID = Unique_Subscription_ID.getAndIncrement();
 	return Order_ID;
 }
 

@@ -26,10 +26,10 @@ public class Order_Time_Matrix {
 		}
 		return order_Lists.get(0);
 	}
-	public void AddOrder(Order newOrder, String order_Listname){
+	public Long AddOrder(Order newOrder, String order_Listname){
 		FindByName(order_Listname).add(newOrder);
 		newOrder.setSubscritables(orderQueue,map,gameDatabase);
-		newOrder.activate();
+		return newOrder.activate();
 	}
 	public void RemoveOrder(Order order, String order_Listname){
 		FindByName(order_Listname).remove(order);
@@ -38,5 +38,8 @@ public class Order_Time_Matrix {
 	}
 	public void RegisterOrder_Type(Order_Lists newOrder_Lists){
 		order_Lists.add(newOrder_Lists);
+	}
+	public Integer queuePeek(){
+		return orderQueue.numEnqueued();
 	}
 }

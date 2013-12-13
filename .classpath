@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/nrjavaserial-3.8.8.jar"/>
+	<classpathentry kind="lib" path="lib/jcommander-1.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Logger{
 	private List<outputChannel> channelList;
-	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss ");
+	private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss ");
 	
 	//constructor
 	public Logger(){

@@ -2,13 +2,16 @@ package server_battle;
 
 import java.io.*;
 import java.util.*;
-import units.*;
+import com.beust.jcommander.*;
+
 import administrative.Logger;
 
 public class Battle {
 
 	private static final int EXECUTION_POOL_SIZE = 4;
 	private static Logger Log = new Logger();
+	private static JCommander jc;
+	private static Commands.createUnit blarg;
 	
 	public static void main(String args[]) throws Exception {
 		Map gameMap = new Map();
@@ -44,35 +47,29 @@ public class Battle {
 			{
 				e.printStackTrace();
 			}
-			outputCurrentState(Orders, gameDatabase, gameMap);
+		
 		}while(input != "exit");
 		
 		outputCurrentState(Orders, gameDatabase, gameMap);
 		Log.close();
     }
-	
 	private static void init(){
+		blarg = new Commands.createUnit();
+		jc = new JCommander();
+		jc.setProgramName("rawr");
+		jc.addCommand("createUnit",blarg);
+		jc.usage();
 	}
 	
 
 	private static boolean parseStringtoOrder(Order_Time_Matrix Orders, String input){
-		String[] inParse = input.trim().split(" ");
-		if(inParse[0].equals("createUnit")){
+		jc.parse(input.split(" "));
+		if(jc.getParsedCommand() == "createUnit"){
 			Log.logln("MainOut","HOLYSHITIMABAT");
-			Unit createdUnit;
-			
-			if(inParse[1].equals("marine") || inParse[1].equals("Marine") || inParse[1].equals("m"))
-				createdUnit = new Marine();
-			else
-				createdUnit = null;
-			
-			Position createPosition = new Position(Integer.parseInt(inParse[2]),Integer.parseInt(inParse[3]));
-			
-			if(createdUnit != null && createPosition != null)
-				Orders.AddOrder(new UnitCreationOrder(createdUnit, createPosition), "UnitCreation");
-			
-			Log.logln("MainOut",createdUnit.getName());
-		}else if(inParse[0] == "moveUnit"){
+			//Orders.AddOrder(newOrder, "UnitCreation");
+			int health = blarg.health;
+			Log.logln("MainOut",Integer.toString(health));
+		}else if(jc.getParsedCommand() == "moveUnit"){
 			//Orders.AddOrder(newOrder, "Movement");
 		}else{
 			return false;
@@ -82,6 +79,6 @@ public class Battle {
 	}
 	
 	private static void outputCurrentState(Order_Time_Matrix Orders, units.GameUnits gameDatabase, Map gameMap){
-		Log.logln("MainOut", "Number of Orders on the Time Queue: " + Orders.queuePeek());
+		
 	}
 }
