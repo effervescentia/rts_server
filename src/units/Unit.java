@@ -27,8 +27,8 @@ public abstract class Unit {
 		return position;
 	}
 	
-	public void setPosition () {
-		
+	public void setPosition (Position position) {
+		position.
 	}
 	
 	public void update(){isupdaterequired();}
