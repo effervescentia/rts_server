@@ -19,12 +19,15 @@ public class OrderService implements Runnable {
 		this.pool = Executors.newFixedThreadPool(poolSize);
 	}
 
-	public void run() {
+	// Periodically checks if the next order is ready. If so, run it
+	public void run() {	
 		poll.scheduleAtFixedRate(
 			new Runnable() {
 				public void run() {
-					if(queue.ready()) {
+					if(queue.ready()) { 
+						Battle.Log.logln("Engine", "Order ready, sending to pool for execution");
 						pool.execute(queue.poll());
+						Battle.Log.logln("Engine", "Order added to pool for execution");
 					}
 				}
 			},
