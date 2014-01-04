@@ -7,6 +7,7 @@
 			<attribute name="javadoc_location" value="http://api.mongodb.org/java/2.11.1/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/RXTX-SDK-I20071016-1945/eclipse/plugins/gnu.io.rxtx_2.1.7.4_v20071016.jar"/>
+	<classpathentry kind="lib" path="lib/nrjavaserial-3.8.8.jar"/>
+	<classpathentry kind="lib" path="lib/jcommander-1.19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

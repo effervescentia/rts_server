@@ -47,6 +47,10 @@ public class OrderQueue {
 		OEWrapper order = inner.peek();
 		return order != null && order.executionTime <= System.currentTimeMillis();
 	}
+	
+	public int numEnqueued(){
+		return inner.size();
+	}
 
 	public Order poll() {
 		OEWrapper order = inner.poll();
