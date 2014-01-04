@@ -23,14 +23,9 @@ public abstract class Unit {
 	public Position getPosition () {
 		return position;
 	}
-	
-<<<<<<< HEAD
-	public void setPosition (Position position) {
-		position.
-=======
+
 	public Position setPosition (Position newPosition) {
 		return position = newPosition;
->>>>>>> acdc89e6827cfa140e222c430882f37bf4355069
 	}
 	
 	public void update(){isupdaterequired();}
