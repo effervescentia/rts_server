@@ -11,7 +11,7 @@ public class Battle {
 	public static Logger Log = new Logger();
 	
 	public static void main(String args[]) throws Exception {
-		//List<String> fileNames = Arrays.asList("MainOut","UnitStatus","OrderStatus","Active");
+		//List<String> fileNames = Arrays.asList("MainOut","UnitStatus","OrderStatus","Engine");
 		//List<String> comPorts = Arrays.asList("COM1","COM2","COM3","COM4");
 		//Log.initialize(fileNames, comPorts);
 		
