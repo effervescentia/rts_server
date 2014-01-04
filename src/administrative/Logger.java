@@ -75,7 +75,7 @@ public class Logger{
 				}
 				break;
 			}*/
-		System.out.println(date + "> :" + type + " " + Message);
+		System.out.println(date + ">" + type + " :" + Message);
 	}
 	public void close(){
 		

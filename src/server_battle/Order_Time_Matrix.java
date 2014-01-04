@@ -18,7 +18,9 @@ public class Order_Time_Matrix {
 		gameDatabase = GameDatabase;
 		orderService.run();
 	}
+	
 	private Order_Lists FindByName(String order_Listname){
+		Battle.Log.logln("OrderStatus","Finding list: " + order_Listname);
 		for(Order_Lists x: order_Lists){
 			if(x.getName() == order_Listname){
 				return x;
@@ -27,16 +29,19 @@ public class Order_Time_Matrix {
 		return order_Lists.get(0);
 	}
 	public Long AddOrder(Order newOrder, String order_Listname){
+		Battle.Log.logln("OrderStatus","Adding Order to: " + order_Listname);
 		FindByName(order_Listname).add(newOrder);
 		newOrder.setSubscritables(orderQueue,map,gameDatabase);
 		return newOrder.activate();
 	}
 	public void RemoveOrder(Order order, String order_Listname){
+		Battle.Log.logln("OrderStatus","Removing Order from: " + order_Listname);
 		FindByName(order_Listname).remove(order);
 		orderQueue.remove(order);
 		/*remove all its geo/general subscriptions*/
 	}
 	public void RegisterOrder_Type(Order_Lists newOrder_Lists){
+		Battle.Log.logln("OrderStatus","Registering Order Type: " + newOrder_Lists.getName());
 		order_Lists.add(newOrder_Lists);
 	}
 	public Integer queuePeek(){

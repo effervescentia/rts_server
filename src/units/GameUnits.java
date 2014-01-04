@@ -1,7 +1,6 @@
 package units;
 
 import java.util.LinkedHashMap;
-
 import server_battle.Battle;
 import server_battle.Position;
 
