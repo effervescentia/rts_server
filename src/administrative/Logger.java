@@ -65,7 +65,7 @@ public class Logger{
 	
 	public void logln(String type, String Message){
 		String date = dateformat.format(Calendar.getInstance().getTime());
-		for(int x = 0; x < channelList.size(); x++)
+		/*for(int x = 0; x < channelList.size(); x++)
 			if(channelList.get(x).name == type){
 				try{
 					channelList.get(x).filechannel.println(date + "> " + Message);
@@ -74,7 +74,8 @@ public class Logger{
 					System.out.println("Error at " + e.getStackTrace().toString() + " With Message: " + e.getMessage());
 				}
 				break;
-			}
+			}*/
+		System.out.println(date + "> :" + type + " " + Message);
 	}
 	public void close(){
 		

@@ -8,24 +8,22 @@ import administrative.Logger;
 public class Battle {
 
 	private static final int EXECUTION_POOL_SIZE = 4;
-	private static Logger Log = new Logger();
+	public static Logger Log = new Logger();
 	
 	public static void main(String args[]) throws Exception {
+		//List<String> fileNames = Arrays.asList("MainOut","UnitStatus","OrderStatus","Active");
+		//List<String> comPorts = Arrays.asList("COM1","COM2","COM3","COM4");
+		//Log.initialize(fileNames, comPorts);
+		
 		Map gameMap = new Map();
 		units.GameUnits gameDatabase = new units.GameUnits();
 		Order_Time_Matrix Orders = new Order_Time_Matrix(EXECUTION_POOL_SIZE, gameMap, gameDatabase);
 		Orders.RegisterOrder_Type(new UnitCreationOrder_List());
 		Orders.RegisterOrder_Type(new MovementOrder_List());
 		Orders.RegisterOrder_Type(new UpdateOrder_List());
-		List<String> fileNames = Arrays.asList("MainOut","UnitStatus","OrderStatus","Active");
-		List<String> comPorts = Arrays.asList("COM1","COM2","COM3","COM4");
 
-		Properties p = new Properties(System.getProperties());
-		p.setProperty("jcommander.debug", "true");
-		System.setProperties(p);
-		
 		init();
-		Log.initialize(fileNames, comPorts);
+
 		
 		System.out.println("Let The Game Begin: ");
 		Log.logln("MainOut", "Let the Game Begin");
@@ -48,7 +46,7 @@ public class Battle {
 		}while(input != "exit");
 		
 		outputCurrentState(Orders, gameDatabase, gameMap);
-		Log.close();
+		//Log.close();
     }
 	
 	private static void init(){
