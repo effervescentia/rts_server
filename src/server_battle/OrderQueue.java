@@ -46,7 +46,7 @@ public class OrderQueue {
 		inner.remove(order);
 	}
 	public boolean ready() {
-		Battle.Log.logln("Engine","Checking Order Readiness");
+		//Battle.Log.logln("Engine","Checking Order Readiness");
 		OEWrapper order = inner.peek();
 		return order != null && order.executionTime <= System.currentTimeMillis();
 	}

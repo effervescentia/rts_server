@@ -15,7 +15,7 @@ public class UnitCreationOrder extends Order {
 		this.Unit = unit;
 		this.Position = position;
 		
-		this.remainingBuildTime = unit.getbuildTime();
+		this.remainingBuildTime = unit.getbuildTime() * 1000;
 	}
 	public void activation(){
 		order_Queue.add(this, TICK_TIME);
@@ -30,7 +30,7 @@ public class UnitCreationOrder extends Order {
 		} else if (remainingBuildTime > 0) {
 			order_Queue.add(this, remainingBuildTime);
 		} else {
-			gameDatabase.CreateUnit(Unit, Position);
+			gameDatabase.createUnit(Unit, Position);
 			//create the unit here, getgameQueue().Database.addUnit(Unit,Position/*,possibleBuildArea*/);
 		}
 	}	

@@ -18,7 +18,7 @@ public class Marine extends Unit{
 	//private List<Subscription> Subscriptions = new ArrayList<Subscription>();
 	
 	public Marine(){
-		super("Marine", 17);
+		super("Marine", 5);
 		Healthmax = 45;
 		Healthregen = 1;
 		Manamax = 20;

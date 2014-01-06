@@ -44,6 +44,9 @@ public class Order_Time_Matrix {
 		Battle.Log.logln("OrderStatus","Registering Order Type: " + newOrder_Lists.getName());
 		order_Lists.add(newOrder_Lists);
 	}
+	public units.GameUnits getGameDatabase(){
+		return gameDatabase;
+	}
 	public Integer queuePeek(){
 		return orderQueue.numEnqueued();
 	}

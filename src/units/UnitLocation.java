@@ -43,7 +43,7 @@ public class UnitLocation {
 	}
 	
 	// adds unit to map, should be functional
-	void AddUnit(final int uniqueID, Position unitPosition) {
+	void addUnit(final int uniqueID, Position unitPosition) {
 		BasicDBObject unit = new BasicDBObject("name", "MongoDB"); 	// create entry for unit
 		unit.put("uniqueID", uniqueID);								// add unique id to entry
 		BasicDBObject loc = new BasicDBObject();					// create location entry
@@ -54,7 +54,7 @@ public class UnitLocation {
 	}
 	
 	// update unit location on map, TODO
-	void MoveUnit(final int uniqueID, Position newPosition) {
+	void moveUnit(final int uniqueID, Position newPosition) {
 		
 		//probably put some check here to see if this is a valid place to move to.
 		
@@ -72,7 +72,7 @@ public class UnitLocation {
 	}
 	
 	// get unit by unique id, should be functional
-	void GetUnit(final int uniqueID)	{
+	void getUnit(final int uniqueID)	{
 		BasicDBObject query = new BasicDBObject("uniqueID", uniqueID);
 		DBCursor cursor = units.find(query);
 		
