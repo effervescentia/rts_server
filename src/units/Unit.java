@@ -37,4 +37,8 @@ public abstract class Unit {
 	public int getbuildTime() {
 		return buildTime;
 	}
+	public String toString() {
+		return this.getName();
+		
+	}
 }

@@ -15,7 +15,7 @@ public class UnitCreationOrder extends Order {
 		this.Unit = unit;
 		this.Position = position;
 		
-		this.remainingBuildTime = unit.getbuildTime();
+		this.remainingBuildTime = unit.getbuildTime()*1000;
 	}
 	public void activation(){
 		order_Queue.add(this, TICK_TIME);

@@ -13,6 +13,7 @@ public class GameUnits {
 		Battle.Log.logln("UnitStatus","Creating unit: " + unit.getName());
 		unitList.put(unit.uniqueId, unit);
 		unitLocation.AddUnit(unit.uniqueId, position);
+		Battle.Log.logln("UnitStatus", "Check: " + unitList.containsKey(unit.uniqueId) + ", stuff: " + unitList.get(unit.uniqueId).getName());
 	}
 	
 	public void RemoveUnit (int uniqueId) {
