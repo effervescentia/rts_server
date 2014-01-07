@@ -1,7 +1,8 @@
 package unit_management;
 
 import java.awt.Point;
-import java.util.LinkedHashMap;
+import java.util.*;
+
 import server_battle.Battle;
 import units.Unit;
 
@@ -24,19 +25,23 @@ public class GameUnits {
 	
 	public void MoveUnit (int uniqueId, Point newPosition) {
 		Battle.Log.logln("UnitStatus","Moving unit: " + Integer.toString(uniqueId));
-		unitLocation.moveUnit(uniqueId, newPosition);
+		unitLocation.moveUnit(uniqueId, unitList.get(uniqueId).getPosition(), newPosition);
 		//set unit location in unit class 
 		//unitList.get(unit.uniqueId).set(newPosition);
 	}
 	
-	public Unit GetUnit (Point newPosition) { // gets unit closest to position
-		Battle.Log.logln("UnitStatus","Looking up unit at position: " + newPosition.toString());
-		return null;
+	public ArrayList<Unit> GetUnits (Point position) { // gets units at position
+		Battle.Log.logln("UnitStatus","Looking up units at position: " + position.toString());
+		Set<Integer> uniqueIds = unitLocation.getUnits(position);
+		ArrayList<Unit> units = new ArrayList<Unit>(uniqueIds.size());
+		for (Integer uniqueId : uniqueIds) {
+			units.add(unitList.get(uniqueId));
+		}
+		return units;
 	}
 	
 	public Unit GetUnit (int uniqueId) {
 		Battle.Log.logln("UnitStatus","Moving unit: " + Integer.toString(uniqueId));
-		return unitList.get(uniqueId);
-		
+		return unitList.get(uniqueId);	
 	}
 }

@@ -9,5 +9,10 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/nrjavaserial-3.8.8.jar"/>
 	<classpathentry kind="lib" path="lib/jcommander-1.19.jar"/>
+	<classpathentry kind="lib" path="/Users/andrew/Dropbox/Development/rts_server/lib/guava-15.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://guava-libraries.googlecode.com/svn/tags/release08/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
