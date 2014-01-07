@@ -1,8 +1,7 @@
 package units;
 
+import java.awt.Point;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import server_battle.Position;
 import units.Unit;
 
 public abstract class Unit {
@@ -12,7 +11,7 @@ public abstract class Unit {
 	protected long updateOrder;
 	private final String name;
 	
-	private Position position;
+	private Point position;
 	
 	public Unit (String name, int buildTime)	{
 		uniqueId = uniqueIdCounter.getAndIncrement();
@@ -20,12 +19,12 @@ public abstract class Unit {
 		this.name = name;
 	}
 	
-	public Position getPosition () {
+	public Point getPosition () {
 		return position;
 	}
 
-	public Position setPosition (Position newPosition) {
-		return position = newPosition;
+	public void setPosition (Point newPosition) {
+		position.setLocation(newPosition);
 	}
 	
 	public void update(){isupdaterequired();}

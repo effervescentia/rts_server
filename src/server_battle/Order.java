@@ -4,7 +4,7 @@ public abstract class Order implements Runnable {
 private long Order_ID;
 protected OrderQueue order_Queue;
 protected Map map;
-protected units.GameUnits gameDatabase;
+protected unit_management.GameUnits gameDatabase;
 //protected List<Subscription> subscription = new ArrayList<Subscription>();
 
 
@@ -18,7 +18,7 @@ public long getOrder_ID(){
 public void setOrder_ID(long order_ID){
 	Order_ID = order_ID;
 }
-public void setSubscritables(OrderQueue orderQueue, Map Map,units. GameUnits GameDatabase){
+public void setSubscritables(OrderQueue orderQueue, Map Map,unit_management.GameUnits GameDatabase){
 	map = Map;
 	gameDatabase = GameDatabase;
 	order_Queue = orderQueue;

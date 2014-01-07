@@ -1,7 +1,7 @@
 package server_battle;
 
+import java.awt.Point;
 import java.io.*;
-import java.util.*;
 import units.*;
 import administrative.Logger;
 
@@ -16,7 +16,7 @@ public class Battle {
 		//Log.initialize(fileNames, comPorts);
 		
 		Map gameMap = new Map();
-		units.GameUnits gameDatabase = new units.GameUnits();
+		unit_management.GameUnits gameDatabase = new unit_management.GameUnits();
 		Order_Time_Matrix Orders = new Order_Time_Matrix(EXECUTION_POOL_SIZE, gameMap, gameDatabase);
 		Orders.RegisterOrder_Type(new UnitCreationOrder_List());
 		Orders.RegisterOrder_Type(new MovementOrder_List());
@@ -64,7 +64,7 @@ public class Battle {
 			else
 				createdUnit = null;
 			
-			Position createPosition = new Position(Integer.parseInt(inParse[2]),Integer.parseInt(inParse[3]));
+			Point createPosition = new Point(Integer.parseInt(inParse[2]),Integer.parseInt(inParse[3]));
 			
 			if(createdUnit != null && createPosition != null)
 				Orders.AddOrder(new UnitCreationOrder(createdUnit, createPosition), "UnitCreation");
@@ -79,7 +79,7 @@ public class Battle {
 		//Orders.AddOrder(newOrder, order_Listname)
 	}
 	
-	private static void outputCurrentState(Order_Time_Matrix Orders, units.GameUnits gameDatabase, Map gameMap){
+	private static void outputCurrentState(Order_Time_Matrix Orders, unit_management.GameUnits gameDatabase, Map gameMap){
 		Log.logln("MainOut", "Number of Orders on the Time Queue: " + Orders.queuePeek());
 	}
 }

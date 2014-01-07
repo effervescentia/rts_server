@@ -1,17 +1,19 @@
 package server_battle;
 
 
+import java.awt.Point;
+
 import units.Unit;
 
 public class UnitCreationOrder extends Order {
 	private static final long TICK_TIME = 1000;
 	
 	private Unit Unit;
-	private Position Position;
+	private Point Position;
 	
 	private long remainingBuildTime;
 	
-	public UnitCreationOrder(Unit unit, Position position/*,Player player*/){
+	public UnitCreationOrder(Unit unit, Point position/*,Player player*/){
 		this.Unit = unit;
 		this.Position = position;
 		
