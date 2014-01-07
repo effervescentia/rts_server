@@ -32,7 +32,7 @@ public class UnitCreationOrder extends Order {
 		} else if (remainingBuildTime > 0) {
 			order_Queue.add(this, remainingBuildTime);
 		} else {
-			gameDatabase.CreateUnit(Unit, Position);
+			gameDatabase.createUnit(Unit, Position);
 			//create the unit here, getgameQueue().Database.addUnit(Unit,Position/*,possibleBuildArea*/);
 		}
 	}	

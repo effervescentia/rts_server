@@ -25,7 +25,6 @@ public class Battle {
 		init();
 
 		
-		System.out.println("Let The Game Begin: ");
 		Log.logln("MainOut", "Let the Game Begin");
 		String input;
 		do{
@@ -70,13 +69,15 @@ public class Battle {
 				Orders.AddOrder(new UnitCreationOrder(createdUnit, createPosition), "UnitCreation");
 			
 			Log.logln("MainOut",createdUnit.getName());
-		}else if(inParse[0] == "moveUnit"){
+		}else if(inParse[0].equals("moveUnit")){
 			//Orders.AddOrder(newOrder, "Movement");
+		}else if(inParse[0].equals("checkUnit")){
+			Orders.getGameDatabase().getUnit(Integer.parseInt(inParse[1]));
 		}else{
 			return false;
 		}
 		return true;
-		//Orders.AddOrder(newOrder, order_Listname)
+		//Orders.AddOrder(newOrder, order_Listname);
 	}
 	
 	private static void outputCurrentState(Order_Time_Matrix Orders, unit_management.GameUnits gameDatabase, Map gameMap){
