@@ -1,4 +1,4 @@
-package deprecitated;
+package depreciated;
 
 public class Position {
 	private Integer x;

@@ -13,8 +13,8 @@ public class UnitMap {
 		unitMap = HashMultimap.create();
 	}
 	
-	UnitMap (int x, int y) {
-		unitMap = HashMultimap.create(x*y, 10);
+	UnitMap (int x, int y, int expectedUnitStackSize) {	// might want to predefine map size
+		unitMap = HashMultimap.create(x*y, expectedUnitStackSize);
 	}
 	
 	public void addUnit (final int uniqueId, Point position) {
