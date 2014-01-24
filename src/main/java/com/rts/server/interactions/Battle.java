@@ -51,9 +51,7 @@ public class Battle {
 				}
 				input = buffReader.readLine();
 				log.info("Input captured: " + input);
-				if (!parseOrder(orders, input)) {
-					log.warn(input + " DID NOT COMPILE");
-				}
+				parseOrder(orders, input);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -73,7 +71,15 @@ public class Battle {
 			return false;
 		}
 		String[] input = asCleanCommands(pInput);
-		Command command = Command.valueOf(input[0]);
+
+		Command command;
+		try {
+			command = Command.valueOf(input[0]);
+		} catch (IllegalArgumentException e) {
+			log.warn("Unrecognized command ignored: " + input[0]);
+			return false;
+		}
+
 		switch (command) {
 		case create:
 			if (input.length != 4) {
@@ -93,9 +99,6 @@ public class Battle {
 						Integer.parseInt(input[1])) != null;
 			}
 			break;
-		default:
-			log.error("Unrecognized command: " + command);
-			return false;
 		}
 		return true;
 		// Orders.AddOrder(newOrder, order_Listname);
