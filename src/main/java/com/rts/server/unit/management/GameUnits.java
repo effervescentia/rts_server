@@ -16,21 +16,21 @@ public class GameUnits {
 	UnitMap unitLocation = new UnitMap();
 
 	public void createUnit(Unit unit, Point position) {
-		log.info("Creating unit: " + unit);
+		log.info("creating unit: " + unit);
 		unitLocation.addUnit(unit.uniqueId, position);
 		unitList.put(unit.uniqueId, unit);
-		log.info("Check: " + unitList.containsKey(unit.uniqueId) + ", stuff: "
+		log.info("check: " + unitList.containsKey(unit.uniqueId) + ", stuff: "
 				+ unitList.get(unit.uniqueId));
 	}
 
 	public void removeUnit(int uniqueId) {
-		log.info("Removing unit: " + Integer.toString(uniqueId));
+		log.info("removing unit: " + Integer.toString(uniqueId));
 		unitLocation.deleteUnit(uniqueId);
 		unitList.remove(uniqueId);
 	}
 
 	public boolean moveUnit(int uniqueId, Point newPosition) {
-		log.info("Moving unit: " + Integer.toString(uniqueId));
+		log.info("moving unit: " + Integer.toString(uniqueId));
 
 		boolean moved = unitLocation.moveUnit(uniqueId, unitList.get(uniqueId)
 				.getPosition(), newPosition);
@@ -49,7 +49,7 @@ public class GameUnits {
 	 * @return list of units at the specified position
 	 */
 	public List<Unit> getUnits(Point position) {
-		log.info("Looking for units at position: " + position.toString());
+		log.info("looking for units at position: " + position.toString());
 		Set<Integer> uniqueIds = unitLocation.getUnits(position);
 		ArrayList<Unit> units = new ArrayList<Unit>(uniqueIds.size());
 		for (Integer uniqueId : uniqueIds) {
@@ -59,7 +59,11 @@ public class GameUnits {
 	}
 
 	public Unit getUnit(int uniqueId) {
+<<<<<<< HEAD
 		log.info("Getting unit: " + Integer.toString(uniqueId));
+=======
+		log.info("checking unit: " + Integer.toString(uniqueId));
+>>>>>>> Added tests for RegenerableStat
 		return unitList.get(uniqueId);
 	}
 

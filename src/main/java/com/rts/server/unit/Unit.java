@@ -3,10 +3,13 @@ package com.rts.server.unit;
 import java.awt.Point;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.log4j.Logger;
+
 import com.rts.server.unit.stat.Stat;
 
 public abstract class Unit {
 	private static final AtomicInteger uniqueIdCounter = new AtomicInteger();
+	private static final Logger log = Logger.getLogger(Unit.class);
 
 	public enum UnitType {
 		Marine
@@ -26,6 +29,9 @@ public abstract class Unit {
 		unitType = pUnitType;
 		movementSpeed = new Stat(pMoveSpeed);
 		position = new Point();
+
+		log.debug(String.format("unit initialized: %d %d %s", uniqueId,
+				buildTime, unitType.toString()));
 	}
 
 	public Point getPosition() {
