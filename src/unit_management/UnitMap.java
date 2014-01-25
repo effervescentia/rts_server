@@ -21,9 +21,11 @@ public class UnitMap {
 		unitMap.put(position, uniqueId);
 	}
 	
-	public void moveUnit (final int uniqueId, Point oldPosition, Point newPosition) {
+	public boolean moveUnit (final int uniqueId, Point oldPosition, Point newPosition) {
+		//ADD IN CODE FOR UNIT COLLISIONS
 		unitMap.remove(oldPosition, uniqueId);
 		unitMap.put(newPosition, uniqueId);
+		return true;
 	}
 	
 	public Set<Integer> getUnits (final Point position) {

@@ -2,7 +2,6 @@ package server_battle;
 
 
 import java.awt.Point;
-
 import units.Unit;
 
 public class UnitCreationOrder extends Order {

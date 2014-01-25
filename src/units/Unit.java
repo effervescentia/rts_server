@@ -12,9 +12,13 @@ public abstract class Unit {
 	private final String name;
 	
 	private Point position;
+	protected final int movementSpeed;
+	protected int movementSpeedMod;
 	
-	public Unit (String name, int buildTime)	{
+	public Unit (String name, int buildTime, int movementSpeed)	{
 		uniqueId = uniqueIdCounter.getAndIncrement();
+		this.movementSpeed = movementSpeed;
+		this.position = new Point();
 		this.buildTime = buildTime;
 		this.name = name;
 	}
@@ -35,6 +39,18 @@ public abstract class Unit {
 	}
 	public int getbuildTime() {
 		return buildTime;
+	}
+	public int getmovespeed(){
+		return movementSpeed + movementSpeedMod;
+	}
+	public int getbasemovespeed(){
+		return movementSpeed;
+	}
+	public void addmovespeed(int modifier){
+		movementSpeedMod += modifier;
+	}
+	public void resetmovespeed(){
+		movementSpeedMod = 0;
 	}
 	public String toString() {
 		return this.getName();

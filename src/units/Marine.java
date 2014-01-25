@@ -10,21 +10,18 @@ public class Marine extends Unit{
 	private int Manabar, Manamaxmod, Manaregenmod;
 	private final int Armour;
 	private int Armourmod;
-	private final int Movementspeed;
-	private int Movementspeedmod;
 	private List<String> Modifiers = new ArrayList<String>();
 	//private List<Effect> Afflictions = new ArrayList<Effect>();
 	//private List<Ability> Abilities = new ArrayList<Ability>();
 	//private List<Subscription> Subscriptions = new ArrayList<Subscription>();
 	
 	public Marine(){
-		super("Marine", 5);
+		super("Marine", 5, 2);
 		Healthmax = 45;
 		Healthregen = 1;
 		Manamax = 20;
 		Manaregen = 1;
 		Armour = 1;
-		Movementspeed = 2;
 		Modifiers.add("terran");
 		Modifiers.add("biological");
 		Modifiers.add("light");
@@ -88,16 +85,16 @@ public class Marine extends Unit{
 			return 0;
 	}
 	public int getmovespeed(){
-		return Movementspeed + Movementspeedmod;
+		return movementSpeed + movementSpeedMod;
 	}
 	public int getbasemovespeed(){
-		return Movementspeed;
+		return movementSpeed;
 	}
 	public void addmovespeed(int modifier){
-		Movementspeedmod += modifier;
+		movementSpeedMod += modifier;
 	}
 	public void resetmovespeed(){
-		Movementspeedmod = 0;
+		movementSpeedMod = 0;
 	}
 	public int getarmour(){
 		return Armour + Armourmod;

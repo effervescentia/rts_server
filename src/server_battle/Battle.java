@@ -70,9 +70,14 @@ public class Battle {
 			
 			Log.logln("MainOut",createdUnit.getName());
 		}else if(inParse[0].equals("moveUnit")){
-			//Orders.AddOrder(newOrder, "Movement");
+			
+			int Unit = Integer.parseInt(inParse[1]);
+			Point Position = new Point(Integer.parseInt(inParse[2]),Integer.parseInt(inParse[3]));
+			
+			Orders.AddOrder(new MovementOrder(Unit, Position), "Movement");
+			Log.logln("MainOut", "Moved Unit: " + Unit);
 		}else if(inParse[0].equals("checkUnit")){
-			Orders.getGameDatabase().getUnit(Integer.parseInt(inParse[1]));
+			Orders.getGameDatabase().checkUnit(Integer.parseInt(inParse[1]));
 		}else{
 			return false;
 		}
