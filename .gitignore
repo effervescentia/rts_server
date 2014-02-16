@@ -3,5 +3,6 @@ bin/
 *.un~
 .DS_Store
 *.swp
+*.class
 .metadata*
 eclimd.log
