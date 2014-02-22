@@ -59,11 +59,7 @@ public class GameUnits {
 	}
 
 	public Unit getUnit(int uniqueId) {
-<<<<<<< HEAD
-		log.info("Getting unit: " + Integer.toString(uniqueId));
-=======
 		log.info("checking unit: " + Integer.toString(uniqueId));
->>>>>>> Added tests for RegenerableStat
 		return unitList.get(uniqueId);
 	}
 
