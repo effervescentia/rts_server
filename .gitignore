@@ -8,6 +8,6 @@ bin/
 eclimd.log
 .settings
 *.jar
-target
+target/
 bin
 *.userprefs
