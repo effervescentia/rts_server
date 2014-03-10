@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 
+import com.rts.server.manager.MovementManager;
+import com.rts.server.manager.UnitCreationManager;
 import com.rts.server.orders.MovementOrder;
 import com.rts.server.orders.Order.OrderType;
 import com.rts.server.orders.UnitCreationOrder;
 import com.rts.server.unit.Marine;
 import com.rts.server.unit.Unit;
+import com.rts.server.unit.UnitCreator;
 import com.rts.server.unit.management.GameUnits;
 
 /**
@@ -23,6 +26,8 @@ public class Battle {
 
 	private static final int EXECUTION_POOL_SIZE = 4;
 	private static final Logger log = Logger.getLogger(Battle.class);
+	private static final UnitCreationManager unitCreation = new UnitCreationManager();
+	private static final MovementManager movementManager = new MovementManager();
 
 	private static enum Command {
 		create, move, check
@@ -114,7 +119,14 @@ public class Battle {
 		int uid = Integer.parseInt(pUnit);
 		Point position = new Point(Integer.parseInt(pX), Integer.parseInt(pY));
 
-		pOrders.addOrder(new MovementOrder(uid, position), OrderType.Movement);
+		Unit unit = pOrders.getGameDatabase().getUnit(uid);
+
+		if (movementManager.canBeApplied(unit)) {
+			pOrders.addOrder(
+					new MovementOrder(uid, position, movementManager
+							.getMoveSpeed(pOrders.getGameDatabase()
+									.getUnit(uid))), OrderType.Movement);
+		}
 		log.info("Moved Unit: " + uid);
 	}
 
@@ -140,13 +152,21 @@ public class Battle {
 					pX, pY));
 		}
 
-		if (createdUnit != null && createPosition != null) {
-			pOrders.addOrder(
-					new UnitCreationOrder(createdUnit, createPosition),
+		if (createdUnit != null && createPosition != null
+				&& unitCreation.canBeApplied(createdUnit)) {
+			UnitCreator simpleCreator = new UnitCreator() {
+				@Override
+				public int getEffortPerTick() {
+					return 300;
+				}
+			};
+
+			pOrders.addOrder(new UnitCreationOrder(createdUnit, createPosition,
+					unitCreation.getCreateTime(createdUnit, simpleCreator)),
 					OrderType.UnitCreation);
 		}
 
-		log.info("unit created: " + createdUnit);
+		log.info("unit created: " + createdUnit.uid);
 	}
 
 	private static void paramError(Command pCommand) {

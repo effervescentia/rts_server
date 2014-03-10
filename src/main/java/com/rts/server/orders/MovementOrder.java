@@ -15,11 +15,13 @@ public class MovementOrder extends Order {
 	private ArrayList<Point> remainingMovement;
 	private Point moveGoal;
 	private Point currentMovement;
+	private int moveSpeed;
 	private double currentTickTime;
 
-	public MovementOrder(int pUid, Point pMoveGoal/* ,Player player */) {
+	public MovementOrder(int pUid, Point pMoveGoal, int pMoveSpeed) {
 		unit = gameDatabase.getUnit(pUid);
 		moveGoal = pMoveGoal;
+		moveSpeed = pMoveSpeed;
 	}
 
 	public void activation() {
@@ -29,9 +31,9 @@ public class MovementOrder extends Order {
 		remainingMovement.remove(0);
 		if (unit.getPosition().x != currentMovement.x
 				&& unit.getPosition().y != currentMovement.y)
-			currentTickTime = Math.sqrt(2) * unit.getBaseMoveSpeed();
+			currentTickTime = Math.sqrt(2) * moveSpeed;
 		else
-			currentTickTime = unit.getBaseMoveSpeed();
+			currentTickTime = moveSpeed;
 
 		currentTickTime *= 1000;
 		orderQueue.add(this, (int) currentTickTime);
@@ -39,20 +41,21 @@ public class MovementOrder extends Order {
 
 	@Override
 	public void run() {
-		boolean lastMove = gameDatabase
-				.moveUnit(unit.uniqueId, currentMovement);
+		boolean lastMove = gameDatabase.moveUnit(unit.uid, currentMovement);
 		if (lastMove) {
 			currentMovement = remainingMovement.get(0);
 			remainingMovement.remove(0);
 			if (unit.getPosition().x != currentMovement.x
-					&& unit.getPosition().y != currentMovement.y)
-				currentTickTime = Math.sqrt(2) * unit.getBaseMoveSpeed();
-			else
-				currentTickTime = unit.getBaseMoveSpeed();
+					&& unit.getPosition().y != currentMovement.y) {
+				currentTickTime = Math.sqrt(2) * moveSpeed;
+			} else {
+				currentTickTime = moveSpeed;
+			}
 
 			currentTickTime *= 1000;
 			orderQueue.add(this, (int) currentTickTime);
 		} else {
+			// check if old path is now valid again, otherwise
 			// repathme
 			// remainingMovement = pathme(moveGoal);
 			// run();

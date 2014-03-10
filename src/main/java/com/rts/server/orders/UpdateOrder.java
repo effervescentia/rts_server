@@ -11,9 +11,9 @@ public class UpdateOrder extends Order {
 	}
 
 	public void run() {
-		unit.update();
-		if (unit.isUpdateRequired()) {
-			orderQueue.add(this, TICK_TIME);
-		}
+		// unit.update();
+		// if (unit.isUpdateRequired()) {
+		// orderQueue.add(this, TICK_TIME);
+		// }
 	}
 }

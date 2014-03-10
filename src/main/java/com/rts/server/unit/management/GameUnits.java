@@ -16,11 +16,11 @@ public class GameUnits {
 	UnitMap unitLocation = new UnitMap();
 
 	public void createUnit(Unit unit, Point position) {
-		log.info("creating unit: " + unit);
-		unitLocation.addUnit(unit.uniqueId, position);
-		unitList.put(unit.uniqueId, unit);
-		log.info("check: " + unitList.containsKey(unit.uniqueId) + ", stuff: "
-				+ unitList.get(unit.uniqueId));
+		log.info("creating unit: " + unit.uid);
+		unitLocation.addUnit(unit.uid, position);
+		unitList.put(unit.uid, unit);
+		log.info("check: " + unitList.containsKey(unit.uid) + ", position: ("
+				+ position.toString() + ", " + position.y + ")");
 	}
 
 	public void removeUnit(int uniqueId) {
@@ -59,12 +59,12 @@ public class GameUnits {
 	}
 
 	public Unit getUnit(int uniqueId) {
-		log.info("checking unit: " + Integer.toString(uniqueId));
+		log.info("checking unit: " + uniqueId);
 		return unitList.get(uniqueId);
 	}
 
 	public void checkUnit(int uniqueId) {
-		log.info("Checking unit: " + Integer.toString(uniqueId));
+		log.info("checking unit: " + uniqueId);
 		log.info(Integer.toString(uniqueId) + " is at postion "
 				+ unitList.get(uniqueId).getPosition().toString());
 	}

@@ -12,11 +12,12 @@ public class UnitCreationOrder extends Order {
 
 	private long remainingBuildTime;
 
-	public UnitCreationOrder(Unit pUnit, Point pPosition/* ,Player pPlayer */) {
+	public UnitCreationOrder(Unit pUnit, Point pPosition, long pInitialBuildTime) {
 		unit = pUnit;
 		position = pPosition;
-
-		remainingBuildTime = pUnit.getBuildTime() * 1000;
+		remainingBuildTime = pInitialBuildTime;
+		//
+		// remainingBuildTime = pUnit.getBuildTime() * 1000;
 	}
 
 	public void activation() {
