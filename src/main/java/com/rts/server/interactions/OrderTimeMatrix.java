@@ -10,17 +10,17 @@ import com.rts.server.orders.Order.OrderType;
 import com.rts.server.unit.management.GameUnits;
 
 /**
- *
+ * 
  * Holds references to all objects in the game
- *
+ * 
  */
 public class OrderTimeMatrix {
 
 	private static final Logger log = Logger.getLogger(OrderTimeMatrix.class);
 	private final OrderQueue orderQueue;
+	private final OrderService orderService;
 	private final GameMap gameMap;
 	private final GameUnits gameDatabase;
-	private final OrderService orderService;
 	protected Map<OrderType, OrderList> orderLists;
 
 	public OrderTimeMatrix(int pPoolsize, GameMap pGameMap,

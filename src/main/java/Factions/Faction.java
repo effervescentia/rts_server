@@ -1,6 +1,5 @@
-package com.rts.server.unit;
+package Factions;
 
-import java.awt.Point;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,25 +9,15 @@ import com.rts.server.attribute.Attribute;
 import com.rts.server.attribute.AttributeType;
 import com.rts.server.interactions.Subscribable;
 
-public abstract class Unit implements Subscribable {
+public abstract class Faction implements Subscribable {
+
 	private static final AtomicInteger uidCounter = new AtomicInteger();
 	protected ConcurrentHashMap<AttributeType, Attribute> attributes;
-	// private static final Logger log = Logger.getLogger(Unit.class);
-
 	public final int uid;
-	private Point position;
 
-	public Unit() {
+	public Faction() {
 		uid = uidCounter.getAndIncrement();
 		attributes = new ConcurrentHashMap<>();
-	}
-
-	public Point getPosition() {
-		return position;
-	}
-
-	public void setPosition(Point pPosition) {
-		position.setLocation(pPosition);
 	}
 
 	@Override

@@ -1,11 +1,28 @@
 package com.rts.server.attribute;
 
-public abstract class Attribute {
+import java.util.Observable;
 
-	protected AttributeType type;
+public abstract class Attribute extends Observable {
+
+	protected final AttributeType type;
+	private Object value;
+
+	protected Attribute(AttributeType type, Object value) {
+		this.type = type;
+		this.value = value;
+	}
 
 	public AttributeType getType() {
 		return type;
 	}
 
+	protected void setValue(Object value) {
+		this.value = value;
+		setChanged();
+		notifyObservers();
+	}
+
+	protected Object getValue() {
+		return this.value;
+	}
 }

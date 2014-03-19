@@ -1,10 +1,18 @@
 package com.rts.server.orders;
 
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+import com.rts.server.attribute.Attribute;
+import com.rts.server.attribute.AttributeType;
 import com.rts.server.interactions.GameMap;
 import com.rts.server.interactions.OrderQueue;
+import com.rts.server.interactions.Subscribable;
 import com.rts.server.unit.management.GameUnits;
 
-public abstract class Order implements Runnable {
+public abstract class Order implements Runnable, Subscribable, Observer {
 
 	public enum OrderType {
 		UnitCreation, Update, Movement
@@ -14,12 +22,10 @@ public abstract class Order implements Runnable {
 	protected OrderQueue orderQueue;
 	protected GameMap map;
 	protected GameUnits gameDatabase;
-
-	// protected List<Subscription> subscription = new
-	// ArrayList<Subscription>();
+	protected ConcurrentHashMap<AttributeType, Attribute> attributes;
 
 	public Order() {
-		orderQueue = null;
+		attributes = new ConcurrentHashMap<AttributeType, Attribute>();
 	}
 
 	public long getId() {
@@ -37,7 +43,22 @@ public abstract class Order implements Runnable {
 		orderQueue = pOrderQueue;
 	}
 
+	@Override
+	public Attribute getAttribute(AttributeType attributeType) {
+		return attributes.get(attributeType);
+	}
+
+	@Override
+	public Set<AttributeType> listAttributes() {
+		return attributes.keySet();
+	}
+
+	@Override
 	public void run() {
+	}
+
+	@Override
+	public void update(Observable obj, Object value) {
 	}
 
 	protected void activation() {
